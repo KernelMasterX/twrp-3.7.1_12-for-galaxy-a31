@@ -1,0 +1,1 @@
+# twrp-3.7.1_12-for-galaxy-a31
