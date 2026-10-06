@@ -39,7 +39,7 @@ jobs:
         run: |
           cd ~/twrp
           git clone --depth=1 https://github.com/KernelMasterX/orangefox-for-galaxy-a31.git device/samsung/a31
-          chmod +x device/samsung/a31/mkbootimg
+          find device/samsung/a31 -name mkbootimg -exec chmod +x {} \;
           echo "TW_DEVICE_VERSION := 3.7.1_12-0 A31 Latest Stable" >> device/samsung/a31/BoardConfig.mk
 
       - name: Build
@@ -49,6 +49,7 @@ jobs:
           export LC_ALL=C
           source build/envsetup.sh
           lunch twrp_a31-eng
+          mka avbtool
           mka recoveryimage -j$(nproc --all)
 
       - name: Upload
